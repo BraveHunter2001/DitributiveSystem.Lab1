@@ -1,45 +1,46 @@
-﻿<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns:msxsl="urn:schemas-microsoft-com:xslt">
-	<xsl:template name ="DS">
-		<xsl:param name="current-node"/>
-		<xsl:if test ="count($current-node/*) != 0">
-			<xsl:for-each select="$current-node/*">
-
-				<xsl:if test ="local-name() = 'BBB'">
-					<font color="red">
-						<xsl:value-of select ="local-name()"/> id = <xsl:value-of select ="./@id"/><br/>
-					</font>
-				</xsl:if>
-
-				<xsl:if test ="local-name() = 'CCC'">
-					<font color="blue">
-						<xsl:value-of select ="local-name()"/> id = <xsl:value-of select ="./@id"/><br/>
-					</font>
-				</xsl:if>
-				<xsl:if test ="local-name() = 'DDD'">
-					<font color="green">
-						<xsl:value-of select ="local-name()"/> id = <xsl:value-of select ="./@id"/><br/>
-					</font>
-				</xsl:if>
-				
-				<xsl:call-template name="DS">
-					<xsl:with-param name="current-node" select="."/>
-				</xsl:call-template>
-			</xsl:for-each >
-		</xsl:if>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template name="DS">
+		<xsl:param name="node"/>
+		<xsl:param name="tag"/>
+		<xsl:param name="color"/>
+		<xsl:for-each select="$node/*">
+			<xsl:if test="$tag = name()">
+				<font color="{$color}">
+					<xsl:value-of select="$tag"/> id = <xsl:value-of select="@id"/>
+				</font>
+				<br/>
+			</xsl:if>
+			<xsl:call-template name="DS">
+				<xsl:with-param name="node" select="." />
+				<xsl:with-param name="tag" select="$tag" />
+				<xsl:with-param name="color" select="$color" />
+			</xsl:call-template>
+		</xsl:for-each>
 	</xsl:template>
 
 	<xsl:template match="/">
 		<html>
-			<head></head>
+			<head>
+				<meta charset="UTF-8"></meta>
+			</head>
 			<body>
-				
-					<xsl:call-template name="DS">
-						<xsl:with-param name="current-node" select="root"/>
-					</xsl:call-template>
-				
+				<xsl:call-template name="DS">
+					<xsl:with-param name="node" select="root"/>
+					<xsl:with-param name="tag" select="'BBB'"/>
+					<xsl:with-param name="color" select="'red'"/>
+				</xsl:call-template>
+				<xsl:call-template name="DS">
+					<xsl:with-param name="node" select="root"/>
+					<xsl:with-param name="tag" select="'CCC'"/>
+					<xsl:with-param name="color" select="'blue'"/>
+				</xsl:call-template>
+				<xsl:call-template name="DS">
+					<xsl:with-param name="node" select="root"/>
+					<xsl:with-param name="tag" select="'DDD'"/>
+					<xsl:with-param name="color" select="'green'"/>
+				</xsl:call-template>
 			</body>
 		</html>
 	</xsl:template>
-
 </xsl:stylesheet>

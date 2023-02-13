@@ -12,7 +12,7 @@ namespace DitributiveSystem.Lab1
     {
         static void Main(string[] args)
         {
-            int numOfTask = 5;
+            int numOfTask = 7;
             string path = $"C:\\Users\\Ilya\\source\\repos\\DitributiveSystem.Lab1\\Task{numOfTask}\\";
 
 

@@ -56,6 +56,12 @@
     <Reference Include="task5">
       <HintPath>Task5\task5.dll</HintPath>
     </Reference>
+    <Reference Include="task6">
+      <HintPath>Task6\task6.dll</HintPath>
+    </Reference>
+    <Reference Include="task7">
+      <HintPath>Task7\task7.dll</HintPath>
+    </Reference>
     <Reference Include="Transform">
       <HintPath>.\Transform.dll</HintPath>
     </Reference>
@@ -78,6 +84,11 @@
     <Content Include="Task4\task4.xslt" />
     <Content Include="Task5\task5.xml" />
     <Content Include="Task5\task5.xslt" />
+    <Content Include="Task6\task6.xml" />
+    <Content Include="Task6\task6.xslt" />
+    <Content Include="Task7\task7.xml" />
+    <Content Include="Task7\task7.xslt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
